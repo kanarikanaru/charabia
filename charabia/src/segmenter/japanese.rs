@@ -18,6 +18,12 @@ static LINDERA: Lazy<Tokenizer> = Lazy::new(|| {
 
     #[cfg(feature = "japanese-segmentation-ipadic")]
     let config = TokenizerConfig {
+        dictionary: DictionaryConfig { kind: Some(DictionaryKind::IPADIC), path: None },
+        mode: Mode::Decompose(Penalty::default()),
+        ..TokenizerConfig::default()
+    };
+    #[cfg(feature = "japanese-segmentation-ipadic-neologd")]
+    let config = TokenizerConfig {
         dictionary: DictionaryConfig { kind: Some(DictionaryKind::IPADICNEologd), path: None },
         mode: Mode::Decompose(Penalty::default()),
         ..TokenizerConfig::default()

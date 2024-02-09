@@ -37,7 +37,7 @@ litemap = "0.7.2"
 zerovec = "0.10.1"
 
 [features]
-default = ["hebrew", "japanese-segmentation-ipadic", "japanese-transliteration","thai", "korean", "greek", "latin-camelcase", "latin-snakecase", "khmer", "vietnamese"]
+default = ["hebrew", "japanese-segmentation-ipadic-neologd", "japanese-transliteration","thai", "korean", "greek", "latin-camelcase", "latin-snakecase", "khmer", "vietnamese"]
 
 # allow chinese specialized tokenization
 chinese = ["dep:pinyin", "dep:jieba-rs"]
@@ -49,6 +49,7 @@ hebrew = []
 japanese = ["japanese-segmentation-ipadic", "japanese-transliteration"]
 japanese-segmentation-ipadic = ["lindera-tokenizer/ipadic", "lindera-tokenizer/ipadic-compress"]
 japanese-segmentation-unidic = ["lindera-tokenizer/unidic", "lindera-tokenizer/unidic-compress"]
+jaoabese-segmentation-ipadic-neologd = ["lindera-tokenizer/ipadic-neologd", "lindera-tokenizer/ipadic-neologd-compress"]
 japanese-transliteration = ["dep:wana_kana"]
 
 # allow korean specialized tokenization
