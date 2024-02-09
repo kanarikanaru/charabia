@@ -5,6 +5,12 @@ use lindera_dictionary::{DictionaryConfig, DictionaryKind};
 use lindera_tokenizer::tokenizer::{Tokenizer, TokenizerConfig};
 use once_cell::sync::Lazy;
 
+#[cfg(feature = "japanese-segmentation-ipadic-neologd")]
+use lindera_core::mode::Penalty;
+use lindera_dictionary::{DictionaryConfig, DictionaryKind};
+use lindera_tokenizer::tokenizer::{Tokenizer, TokenizerConfig};
+use once_cell::sync::Lazy;
+
 use crate::segmenter::Segmenter;
 
 /// Japanese specialized [`Segmenter`].
@@ -13,8 +19,8 @@ use crate::segmenter::Segmenter;
 pub struct JapaneseSegmenter;
 
 static LINDERA: Lazy<Tokenizer> = Lazy::new(|| {
-    #[cfg(all(feature = "japanese-segmentation-ipadic", feature = "japanese-segmentation-unidic"))]
-    compile_error!("Feature japanese-segmentation-ipadic and japanese-segmentation-unidic are mutually exclusive and cannot be enabled together");
+    #[cfg(all(feature = "japanese-segmentation-ipadic", feature = "japanese-segmentation-ipadic-neologd"))]
+    compile_error!("Feature japanese-segmentation-ipadic and japanese-segmentation-ipadic-neologd are mutually exclusive and cannot be enabled together");
 
     #[cfg(feature = "japanese-segmentation-ipadic")]
     let config = TokenizerConfig {
@@ -22,9 +28,9 @@ static LINDERA: Lazy<Tokenizer> = Lazy::new(|| {
         mode: Mode::Decompose(Penalty::default()),
         ..TokenizerConfig::default()
     };
-    #[cfg(feature = "japanese-segmentation-unidic")]
+    #[cfg(feature = "japanese-segmentation-ipadic-neologd")]
     let config = TokenizerConfig {
-        dictionary: DictionaryConfig { kind: Some(DictionaryKind::UniDic), path: None },
+        dictionary: DictionaryConfig { kind: Some(DictionaryKind::IPADICNEologd), path: None },
         mode: Mode::Normal,
         ..TokenizerConfig::default()
     };
@@ -129,8 +135,8 @@ mod test {
         &[]
     };
 
-    #[cfg(all(feature = "japanese-segmentation-ipadic", feature = "japanese-segmentation-unidic"))]
-    compile_error!("Feature japanese-segmentation-ipadic and japanese-segmentation-unidic are mutually exclusive and cannot be enabled together");
+    #[cfg(all(feature = "japanese-segmentation-ipadic", feature = "japanese-segmentation-ipadic-neologd"))]
+    compile_error!("Feature japanese-segmentation-ipadic and japanese-segmentation-ipadic-neologd are mutually exclusive and cannot be enabled together");
 
     // Macro that run several tests on the Segmenter.
     test_segmenter!(JapaneseSegmenter, TEXT, SEGMENTED, TOKENIZED, Script::Cj, Language::Jpn);
