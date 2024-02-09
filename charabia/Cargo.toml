@@ -46,7 +46,7 @@ chinese = ["dep:pinyin", "dep:jieba-rs"]
 hebrew = []
 
 # allow japanese specialized tokenization
-japanese = ["japanese-segmentation-unidic"]
+japanese = ["japanese-segmentation-ipadic", "japanese-transliteration"]
 japanese-segmentation-ipadic = ["lindera-tokenizer/ipadic", "lindera-tokenizer/ipadic-compress"]
 japanese-segmentation-unidic = ["lindera-tokenizer/unidic", "lindera-tokenizer/unidic-compress"]
 japanese-transliteration = ["dep:wana_kana"]
