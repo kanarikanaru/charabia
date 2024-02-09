@@ -1,11 +1,5 @@
 use lindera_core::mode::Mode;
-#[cfg(feature = "japanese-segmentation-ipadic")]
-use lindera_core::mode::Penalty;
-use lindera_dictionary::{DictionaryConfig, DictionaryKind};
-use lindera_tokenizer::tokenizer::{Tokenizer, TokenizerConfig};
-use once_cell::sync::Lazy;
-
-#[cfg(feature = "japanese-segmentation-ipadic-neologd")]
+#[cfg(any(feature = "japanese-segmentation-ipadic", feature = "japanese-segmentation-ipadic-neologd"))]
 use lindera_core::mode::Penalty;
 use lindera_dictionary::{DictionaryConfig, DictionaryKind};
 use lindera_tokenizer::tokenizer::{Tokenizer, TokenizerConfig};
