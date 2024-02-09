@@ -46,7 +46,7 @@ chinese = ["dep:pinyin", "dep:jieba-rs"]
 hebrew = []
 
 # allow japanese specialized tokenization
-japanese = ["jaoabese-segmentation-ipadic-neologd", "japanese-transliteration"]
+japanese = ["japanese-segmentation-ipadic-neologd", "japanese-transliteration"]
 japanese-segmentation-ipadic = ["lindera-tokenizer/ipadic", "lindera-tokenizer/ipadic-compress"]
 japanese-segmentation-unidic = ["lindera-tokenizer/unidic", "lindera-tokenizer/unidic-compress"]
 japanese-segmentation-ipadic-neologd = ["lindera-tokenizer/ipadic-neologd", "lindera-tokenizer/ipadic-neologd-compress"]
